@@ -24,6 +24,7 @@ int main() {
 		for (size_t i = 0; i < num; i++) {
 			std::cout << "Zahl " << i+1 << '\n';
 			std::cin >> a[i];
+			if(a[i] < 0) a[i] *= -1;
 		}
 
 		switch(programm) {
