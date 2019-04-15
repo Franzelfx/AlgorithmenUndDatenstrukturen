@@ -45,13 +45,13 @@ uint8_t ggtProgramN(){
 	std::cout << "Gib die Anzahl der Zahlen ein: ";
 	std::cin >> n;
 	if(n < 0) n = n * -1;
-	for(int i=0; i<n; i++) {
+	for(int8_t i=0; i<n; i++) {
 		std::cout << "Gib die " << i + 1 << ". Zahl ein: ";
 		std::cin >> values[i];
 	}
-	result = ggT(values[0], values[1]);
-	for(int i=2; i<n; i++) {
-		result = ggT(values[i], result);
+	result = ggT_v(values[0], values[1]);
+	for(int8_t i=2; i<n; i++) {
+		result = ggT_v(values[i], result);
 	}
 	std::cout << "Der ggT aus " << n << " Zahlen lautet: " << result << std::endl;
 	return 0;
@@ -74,6 +74,8 @@ uint64_t ggT(int64_t a, int64_t b){
 	return b;
 }
 uint64_t ggT_v(int64_t a, int64_t b){
+	static int count = 0;
+
 	if(a < 0) a = a * -1;
 	if(b < 0) b = b * -1;
 	if(a == 0) a = b;
@@ -87,7 +89,9 @@ uint64_t ggT_v(int64_t a, int64_t b){
 		uint64_t times = 0;
 		times = a / b;
 		b = a - times * b;
+		count++;
 		std::cout << "Nächster Dividend: " << b << std::endl;
+		std::cout << "Rechendurchlauf: " << count << std::endl;
 	}
 	return b;
 }
